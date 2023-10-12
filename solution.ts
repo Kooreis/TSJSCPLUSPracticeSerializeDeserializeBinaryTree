@@ -1,10 +1,11 @@
-class TreeNode {
-    val: number;
-    left: TreeNode | null;
-    right: TreeNode | null;
-    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-        this.val = (val === undefined ? 0 : val);
-        this.left = (left === undefined ? null : left);
-        this.right = (right === undefined ? null : right);
+class Codec {
+    // Encodes a tree to a single string.
+    serialize(root: TreeNode | null): string {
+        if (root === null) {
+            return 'X';
+        }
+        const leftSerialized = this.serialize(root.left);
+        const rightSerialized = this.serialize(root.right);
+        return root.val + ',' + leftSerialized + ',' + rightSerialized;
     }
 }
